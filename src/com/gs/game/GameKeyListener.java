@@ -162,7 +162,7 @@ public class GameKeyListener implements KeyListener {
             tiles.set(newTile.getIndex(), newTile);
             gamePanel.add(newTileBtn);
         }
-        scoreLbl.repaint();
+        //scoreLbl.repaint();
         gamePanel.repaint();
         gameCore.initMerge();
         gameCore.initMoveTime();
