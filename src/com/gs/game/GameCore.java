@@ -277,4 +277,15 @@ public class GameCore {
         return false;
     }
 
+    public boolean gameOver() {
+        for(int i = 0; i < 16; i++) {
+            if(tiles.get(i).getNumber() > 0) {
+                if(canMoveUp() || canMoveLeft() || canMoveDown() || canMoveRight()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }

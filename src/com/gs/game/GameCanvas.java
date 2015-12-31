@@ -19,8 +19,6 @@ public class GameCanvas extends JFrame {
         setLocation(200, 200);
         setTitle("2048");
         getContentPane().setLayout(new BorderLayout());
-        gameCore = new GameCore();
-        gameCore.initGameTiles();
         initGame();
         UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -35,7 +33,9 @@ public class GameCanvas extends JFrame {
         return scoreLbl;
     }
 
-    private void initGame() {
+    public void initGame() {
+        gameCore = new GameCore();
+        gameCore.initGameTiles();
         JPanel topPanel = new JPanel(new FlowLayout());
         scoreLbl = new JLabel("0");
         topPanel.add(scoreLbl);

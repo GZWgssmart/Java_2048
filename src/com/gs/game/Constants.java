@@ -12,5 +12,6 @@ public class Constants {
     public static final int KEY_LEFT = 37;
     public static final int KEY_RIGHT = 39;
 
+    public static final int KEY_ENTER = 10;
 
 }

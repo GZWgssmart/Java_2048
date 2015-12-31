@@ -49,6 +49,11 @@ public class GameKeyListener implements KeyListener {
             default:
                 break;
         }
+        if(gameCore.gameOver()) {
+            if(e.getKeyCode() != Constants.KEY_ENTER) {
+                JOptionPane.showMessageDialog(gameCanvas.getContentPane(), "游戏结束,您的分数为: " + gameCore.getScore(), "提示", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
     }
 
     /**
