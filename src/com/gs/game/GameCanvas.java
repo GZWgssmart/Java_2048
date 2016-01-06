@@ -11,11 +11,12 @@ public class GameCanvas extends JFrame {
 
     private GameCore gameCore;
     private JPanel gamePanel;
+    private GameKeyListener gameKeyListener;
 
     private JLabel scoreLbl;
 
     public GameCanvas() throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
-        setSize(410, 450);
+        setSize(410, 470);
         setLocation(200, 200);
         setTitle("2048");
         getContentPane().setLayout(new BorderLayout());
@@ -35,20 +36,41 @@ public class GameCanvas extends JFrame {
 
     public void initGame() {
         gameCore = new GameCore();
-        gameCore.initGameTiles();
-        JPanel topPanel = new JPanel(new FlowLayout());
-        scoreLbl = new JLabel("0");
-        topPanel.add(scoreLbl);
-        gamePanel = new JPanel(null);
-        initTiles();
-        GameKeyListener gameKeyListener = new GameKeyListener();
+        gameKeyListener = new GameKeyListener();
         gameKeyListener.setGameCore(gameCore);
         gameKeyListener.setGameCanvas(this);
+        JPanel topPanel = new JPanel(new FlowLayout());
+        scoreLbl = new JLabel("0");
+        JButton newGameBtn = new JButton("新游戏");
+        newGameBtn.setName("newGame");
+        newGameBtn.setFocusable(false);
+        GameActionListener gameActionListener = new GameActionListener();
+        gameActionListener.setGameCanvas(this);
+        newGameBtn.addActionListener(gameActionListener);
+        topPanel.add(scoreLbl);
+        topPanel.add(newGameBtn);
+        add(topPanel, BorderLayout.NORTH);
+        initGamePanel();
+    }
+
+    private void initGamePanel() {
+        gameCore.initGameTiles();
+        gamePanel = new JPanel(null);
+        initTiles();
         gamePanel.addKeyListener(gameKeyListener);
         gamePanel.setFocusable(true);
         gamePanel.requestFocus();
-        add(topPanel, BorderLayout.NORTH);
         add(gamePanel, BorderLayout.CENTER);
+    }
+
+    public void reInitGamePanel() {
+        // TODO 这里有重绘问题,需要进一步检查
+        scoreLbl.setText("0");
+        remove(gamePanel);
+        initGamePanel();
+        gamePanel.requestFocus();
+        gamePanel.invalidate();
+        invalidate();
     }
 
     private void initTiles() {

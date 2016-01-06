@@ -29,6 +29,8 @@ public class GameCore {
      * 初始化所有格子,并只需要初始化两个为2的格子
      */
     public void initGameTiles() {
+        score = 0;
+        tiles.clear();
         Random random = new Random();
         int first = random.nextInt(16);
         int second = random.nextInt(16);
