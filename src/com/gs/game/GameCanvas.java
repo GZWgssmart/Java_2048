@@ -64,13 +64,12 @@ public class GameCanvas extends JFrame {
     }
 
     public void reInitGamePanel() {
-        // TODO 这里有重绘问题,需要进一步检查
         scoreLbl.setText("0");
         remove(gamePanel);
         initGamePanel();
         gamePanel.requestFocus();
-        gamePanel.invalidate();
-        invalidate();
+        //gamePanel.validate();
+        validate();
     }
 
     private void initTiles() {
