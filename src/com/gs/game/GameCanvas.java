@@ -17,7 +17,7 @@ public class GameCanvas extends JFrame {
 
     public GameCanvas() throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
         setSize(410, 470);
-        setLocation(200, 200);
+        setLocationRelativeTo(null);
         setTitle("2048");
         getContentPane().setLayout(new BorderLayout());
         initGame();
